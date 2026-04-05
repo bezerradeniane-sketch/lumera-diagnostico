@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Era da Clareza Financeira — Diagnóstico 360° Lumera Vision</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:         #080610;
+      --bg2:        #0E0B1A;
+      --bg3:        #150F25;
+      --purple:     #7C3AED;
+      --purple2:    #9F67F5;
+      --gold:       #C9A84C;
+      --gold2:      #E8C96A;
+      --text:       #EAE4F5;
+      --muted:      #8B7FA8;
+      --white:      #FFFFFF;
+      --danger:     #E05252;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ─── GRAIN ─── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+
+    /* ─── GLOW ORBS ─── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+    .orb-1 { width: 700px; height: 700px; background: var(--purple); top: -200px; left: -200px; }
+    .orb-2 { width: 500px; height: 500px; background: var(--gold); bottom: -150px; right: -150px; }
+
+    /* ─── SECTION BASE ─── */
+    section { position: relative; z-index: 1; }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 24px 80px;
+      overflow: hidden;
+    }
+
+    .movement-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(201,168,76,0.07);
+      border-radius: 100px;
+      padding: 8px 24px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 40px;
+      animation: rise 1s ease both;
+    }
+    .movement-tag::before { content: '✦'; font-size: 10px; }
+    .movement-tag::after  { content: '✦'; font-size: 10px; }
+
+    .hero-eyebrow {
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      animation: rise 1s 0.1s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--white);
+      max-width: 900px;
+      margin-bottom: 32px;
+      animation: rise 1s 0.15s ease both;
+    }
+    .hero-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-title .line-dark {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .hero-question {
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 16px;
+      animation: rise 1s 0.2s ease both;
+    }
+    .hero-question strong { color: var(--text); font-weight: 500; }
+
+    .hero-answer {
+      font-size: clamp(15px, 1.8vw, 18px);
+      font-weight: 400;
+      color: var(--text);
+      max-width: 540px;
+      margin-bottom: 64px;
+      padding: 20px 28px;
+      border-left: 2px solid var(--gold);
+      background: rgba(201,168,76,0.05);
+      border-radius: 0 8px 8px 0;
+      text-align: left;
+      animation: rise 1s 0.25s ease both;
+    }
+
+    /* ─── VIDEO ─── */
+    .video-wrap {
+      width: 100%; max-width: 860px;
+      animation: rise 1s 0.3s ease both;
+    }
+    .video-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .video-label::before, .video-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3));
+    }
+    .video-label::after { transform: scaleX(-1); }
+
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(124,58,237,0.25), 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(124,58,237,0.15);
+      background: var(--bg3);
+    }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .video-corner {
+      position: absolute; width: 20px; height: 20px;
+      border-color: var(--gold); border-style: solid; pointer-events: none; z-index: 2;
+    }
+    .video-corner.tl { top: 0; left: 0; border-width: 2px 0 0 2px; border-radius: 12px 0 0 0; }
+    .video-corner.tr { top: 0; right: 0; border-width: 2px 2px 0 0; border-radius: 0 12px 0 0; }
+    .video-corner.bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; border-radius: 0 0 0 12px; }
+    .video-corner.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; border-radius: 0 0 12px 0; }
+
+    /* ══════════════════════════════
+       INIMIGOS
+    ══════════════════════════════ */
+    .enemies {
+      padding: 100px 24px;
+      max-width: 900px; margin: 0 auto;
+    }
+    .section-tag {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--danger); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-tag::after { content: ''; flex: 1; height: 1px; background: rgba(224,82,82,0.2); }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700; line-height: 1.1;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px; font-weight: 300;
+      color: var(--muted); max-width: 540px;
+      margin-bottom: 56px; line-height: 1.7;
+    }
+
+    .enemies-list { display: flex; flex-direction: column; gap: 2px; }
+    .enemy-item {
+      display: grid; grid-template-columns: 48px 1fr;
+      gap: 20px; align-items: start;
+      padding: 28px 24px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .enemy-item:hover {
+      background: rgba(124,58,237,0.07);
+      border-color: rgba(124,58,237,0.2);
+    }
+    .enemy-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 700;
+      color: rgba(224,82,82,0.3);
+      line-height: 1;
+    }
+    .enemy-name {
+      font-size: 16px; font-weight: 600;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .enemy-desc { font-size: 15px; color: var(--muted); font-weight: 300; }
+
+    /* ══════════════════════════════
+       STORY
+    ══════════════════════════════ */
+    .story {
+      padding: 100px 24px;
+      max-width: 760px; margin: 0 auto;
+      text-align: center;
+    }
+    .story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 4vw, 40px);
+      font-style: italic; font-weight: 600;
+      color: var(--white); line-height: 1.3;
+      margin-bottom: 48px;
+    }
+    .story-quote em { color: var(--gold2); font-style: normal; }
+
+    .story-body { font-size: 17px; color: var(--muted); font-weight: 300; line-height: 1.9; margin-bottom: 48px; text-align: left; }
+    .story-body strong { color: var(--text); font-weight: 500; }
+
+    .story-moment {
+      padding: 32px;
+      background: rgba(124,58,237,0.07);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 12px;
+      font-size: 16px; color: var(--text);
+      line-height: 1.8; text-align: left;
+    }
+    .story-moment p { margin-bottom: 12px; }
+    .story-moment p:last-child { margin-bottom: 0; color: var(--gold2); font-weight: 500; }
+
+    /* ══════════════════════════════
+       PROMESSA
+    ══════════════════════════════ */
+    .promise {
+      padding: 100px 24px;
+      max-width: 900px; margin: 0 auto;
+    }
+    .promise-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 56px;
+    }
+    .promise-card {
+      padding: 32px 28px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .promise-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+    .promise-icon { font-size: 24px; margin-bottom: 16px; display: block; }
+    .promise-title { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .promise-text { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+    /* ══════════════════════════════
+       AUTORIDADE
+    ══════════════════════════════ */
+    .authority {
+      padding: 80px 24px;
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 2fr;
+      gap: 60px; align-items: center;
+    }
+    .authority-stats { display: flex; flex-direction: column; gap: 24px; }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 700;
+      color: var(--gold2); line-height: 1;
+      display: block;
+    }
+    .stat-label { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+    .authority-text {}
+    .auth-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 700;
+      color: var(--white); margin-bottom: 4px;
+    }
+    .auth-role { font-size: 14px; color: var(--gold); font-weight: 500; margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .auth-bio { font-size: 16px; color: var(--muted); font-weight: 300; line-height: 1.8; }
+    .auth-bio strong { color: var(--text); font-weight: 500; }
+
+    /* ══════════════════════════════
+       CTA PRINCIPAL
+    ══════════════════════════════ */
+    .cta-block {
+      padding: 120px 24px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-block::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-manifesto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4.5vw, 52px);
+      font-weight: 600; font-style: italic;
+      color: var(--white); line-height: 1.2;
+      max-width: 780px; margin: 0 auto 24px;
+    }
+    .cta-manifesto em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .cta-sub {
+      font-size: 18px; color: var(--muted); font-weight: 300;
+      max-width: 520px; margin: 0 auto 56px; line-height: 1.7;
+    }
+    .cta-sub strong { color: var(--text); font-weight: 500; }
+
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--purple2) 100%);
+      color: var(--white); text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px; font-weight: 600;
+      padding: 22px 56px; border-radius: 100px;
+      box-shadow: 0 8px 40px rgba(124,58,237,0.5), 0 0 0 1px rgba(159,103,245,0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative; overflow: hidden;
+    }
+    .cta-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+    }
+    .cta-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(124,58,237,0.6), 0 0 0 1px rgba(159,103,245,0.5);
+    }
+    .cta-btn .arrow { transition: transform 0.25s ease; }
+    .cta-btn:hover .arrow { transform: translateX(5px); }
+
+    .cta-details {
+      margin-top: 24px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .cta-detail {
+      font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cta-detail::before { content: '✓'; color: var(--gold); font-weight: 600; }
+
+    /* ══════════════════════════════
+       MANIFESTO STRIP
+    ══════════════════════════════ */
+    .manifesto-strip {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 60px 24px;
+      text-align: center;
+      background: var(--bg2);
+    }
+    .manifesto-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 600; font-style: italic;
+      color: var(--muted); line-height: 1.6;
+      max-width: 760px; margin: 0 auto;
+    }
+    .manifesto-text strong { color: var(--white); font-style: normal; }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      padding: 48px 24px;
+      text-align: center; position: relative; z-index: 1;
+    }
+    .footer-logo {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--white); margin-bottom: 4px;
+    }
+    .footer-role { font-size: 13px; color: var(--muted); }
+    .footer-tagline {
+      margin-top: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-style: italic;
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .promise-grid { grid-template-columns: 1fr; }
+      .authority { grid-template-columns: 1fr; text-align: center; }
+      .authority-stats { flex-direction: row; justify-content: center; gap: 32px; }
+      .cta-btn { padding: 18px 36px; font-size: 16px; }
+      .story-body { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="movement-tag">Era da Clareza Financeira</div>
+    <p class="hero-eyebrow">Diagnóstico 360° — Lumera Vision</p>
+
+    <h1 class="hero-title">
+      Sua empresa fatura.<br>
+      Você trabalha muito.<br>
+      <em>Mas ainda decide no escuro?</em>
+    </h1>
+
+    <p class="hero-question">
+      Se a sua empresa parasse hoje por 30 dias —<br>
+      <strong>você saberia exatamente o que aconteceria com o seu dinheiro?</strong>
+    </p>
+
+    <div class="hero-answer">
+      A maioria dos empresários responde com <em>"acho que sim..."</em> ou <em>"mais ou menos..."</em><br><br>
+      E é aqui que mora o risco.<br>
+      Não é falta de esforço. Não é falta de vendas.<br>
+      <strong>É falta de clareza.</strong>
+    </div>
+
+    <div class="video-wrap">
+      <p class="video-label">Assista à aula — 7 minutos que vão mudar sua visão</p>
+      <div class="video-frame">
+        <div class="video-corner tl"></div>
+        <div class="video-corner tr"></div>
+        <div class="video-corner bl"></div>
+        <div class="video-corner br"></div>
+        <iframe src="https://drive.google.com/file/d/1iSL7WD9RsMmO8LcBbFnajmcK34i12rgC/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MANIFESTO STRIP ══ -->
+  <div class="manifesto-strip">
+    <p class="manifesto-text">
+      "Empresas não quebram por falta de trabalho.<br>
+      <strong>Elas quebram por falta de clareza.</strong><br>
+      E a gestão no escuro não avisa — ela vai se acumulando<br>
+      em decisões pequenas, todos os dias."
+    </p>
+  </div>
+
+  <!-- ══ INIMIGOS ══ -->
+  <section class="enemies">
+    <p class="section-tag">Os 5 inimigos silenciosos</p>
+    <h2 class="section-title">O que está destruindo<br>empresas por dentro</h2>
+    <p class="section-sub">Você já conhece esses inimigos — mas provavelmente ainda não os identificou na sua empresa.</p>
+
+    <div class="enemies-list">
+      <div class="enemy-item">
+        <span class="enemy-num">01</span>
+        <div>
+          <p class="enemy-name">A Gestão no Escuro</p>
+          <p class="enemy-desc">Você trabalha, vende, cresce — mas não consegue responder: quanto realmente lucro? Qual decisão financeira devo tomar agora? Meu crescimento é sustentável?</p>
+        </div>
+      </div>
+      <div class="enemy-item">
+        <span class="enemy-num">02</span>
+        <div>
+          <p class="enemy-name">O Mito do Faturamento</p>
+          <p class="enemy-desc">Faturamento impressiona. Mas não revela a verdade. Empresas podem faturar muito e ainda ter margens frágeis, caixa pressionado e crescimento desorganizado.</p>
+        </div>
+      </div>
+      <div class="enemy-item">
+        <span class="enemy-num">03</span>
+        <div>
+          <p class="enemy-name">A Ilusão do Crescimento</p>
+          <p class="enemy-desc">Crescer sem estrutura financeira não é evolução — é expansão do problema. Quando você cresce sem clareza sobre custos e margens, você apenas amplifica os riscos.</p>
+        </div>
+      </div>
+      <div class="enemy-item">
+        <span class="enemy-num">04</span>
+        <div>
+          <p class="enemy-name">A Contabilidade do Passado</p>
+          <p class="enemy-desc">Olhar só para trás não sustenta decisões do futuro. Empresas hoje precisam de clareza para decidir — não apenas de registros históricos.</p>
+        </div>
+      </div>
+      <div class="enemy-item">
+        <span class="enemy-num">05</span>
+        <div>
+          <p class="enemy-name">O Improviso Empresarial</p>
+          <p class="enemy-desc">Decidir sem dados é apostar. O improviso pode funcionar no início — mas ele não sustenta crescimento. Clareza substitui improviso por consciência estratégica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ HISTÓRIA ══ -->
+  <section class="story">
+    <p class="story-quote">
+      "Eu trabalho com números...<br>
+      <em>como eu não vi isso chegando?"</em>
+    </p>
+
+    <div class="story-body">
+      <p>Eu comecei a empreender como muita gente começa — na cara e na coragem, sozinha, fazendo tudo. Operacional, tático, estratégico. Sem estrutura. Mas com muita vontade de dar certo.</p>
+      <br>
+      <p>E como muitos empreendedores, eu fui crescendo. Só que não percebi um risco silencioso que estava se formando.</p>
+      <br>
+      <p><strong>Mais de 60% do faturamento da minha empresa vinha de um único cliente.</strong> E até então, parecia tudo sob controle.</p>
+      <br>
+      <p>Até o dia em que esse cliente decidiu internalizar o financeiro. E naquele momento — o meu negócio praticamente foi arrancado de mim.</p>
+    </div>
+
+    <div class="story-moment">
+      <p>Foi um choque. Mas mais do que isso — foi um despertar.</p>
+      <p>Vieram noites sem dormir. Pressão. Pessoas dependendo de mim. Eu estava sozinha, segurando tudo.</p>
+      <p>Mas foi ali que eu percebi: o problema não era falta de esforço. Era falta de clareza — sobre riscos, sobre estrutura, sobre decisões.</p>
+      <p>"Os pontos cegos existem... até para quem entende de números." — E foi dessa dor que nasceu tudo o que hoje eu ensino.</p>
+    </div>
+  </section>
+
+  <!-- ══ PROMESSA ══ -->
+  <section class="promise">
+    <p class="section-tag" style="--danger: #7C3AED; color: var(--purple2);">O que você vai descobrir</p>
+    <h2 class="section-title">Nessa aula você vai entender</h2>
+    <p class="section-sub">Em 7 minutos — direto, sem enrolação — o que separa empresas que crescem com consistência das que trabalham muito e ficam no lugar.</p>
+
+    <div class="promise-grid">
+      <div class="promise-card">
+        <span class="promise-icon">🔍</span>
+        <p class="promise-title">Por que faturamento não garante segurança</p>
+        <p class="promise-text">O que realmente revela a saúde da sua empresa — e por que olhar só para o faturamento pode te deixar cego para os riscos reais.</p>
+      </div>
+      <div class="promise-card">
+        <span class="promise-icon">⚠️</span>
+        <p class="promise-title">Os 5 inimigos da clareza financeira</p>
+        <p class="promise-text">Os padrões silenciosos que destroem empresas por dentro — e como identificá-los antes que causem dano.</p>
+      </div>
+      <div class="promise-card">
+        <span class="promise-icon">🧭</span>
+        <p class="promise-title">Como sair da gestão no escuro</p>
+        <p class="promise-text">Os três pilares que toda empresa precisa para tomar decisões com clareza — clareza dos números reais, estrutura financeira e direcionamento estratégico.</p>
+      </div>
+      <div class="promise-card">
+        <span class="promise-icon">🏗️</span>
+        <p class="promise-title">O que empresas estruturadas fazem diferente</p>
+        <p class="promise-text">O método que transforma clareza em estrutura — e estrutura em crescimento consistente e sustentável.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AUTORIDADE ══ -->
+  <section class="authority">
+    <div class="authority-stats">
+      <div class="stat-item">
+        <span class="stat-num">18+</span>
+        <span class="stat-label">anos de experiência</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">300+</span>
+        <span class="stat-label">empresas atendidas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">360°</span>
+        <span class="stat-label">visão do negócio</span>
+      </div>
+    </div>
+    <div class="authority-text">
+      <p class="auth-name">Deniane Bezerra</p>
+      <p class="auth-role">✦ Fundadora da Era da Clareza Financeira</p>
+      <p class="auth-bio">
+        Especialista em <strong>BPO Financeiro e decisões estratégicas</strong>, Deniane Bezerra ajuda empresários a enxergar o que antes estava invisível no próprio negócio.<br><br>
+        Criadora do <strong>Método Lumera Vision</strong> — que transforma clareza em estrutura e estrutura em crescimento — e fundadora do movimento <strong>Era da Clareza Financeira</strong>, que reúne empresários e profissionais que acreditam que <em>clareza é o ponto de partida de toda decisão inteligente.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ CTA PRINCIPAL ══ -->
+  <section class="cta-block">
+    <p class="cta-manifesto">
+      Hoje você sente que tem clareza —<br>
+      ou ainda está decidindo <em>no escuro?</em>
+    </p>
+    <p class="cta-sub">
+      Faça o Diagnóstico 360° Lumera Vision.<br>
+      <strong>Leva menos de 8 minutos.</strong> Ao final, você recebe um diagnóstico personalizado no seu e-mail — com clareza sobre onde sua empresa está e o que precisa mudar.
+    </p>
+    <a class="cta-btn" href="https://forms.gle/Z317fAK6ep5gj6S39" target="_blank">
+      Quero fazer meu diagnóstico agora
+      <span class="arrow">→</span>
+    </a>
+    <div class="cta-details">
+      <span class="cta-detail">100% gratuito</span>
+      <span class="cta-detail">Resultado no e-mail</span>
+      <span class="cta-detail">Menos de 8 minutos</span>
+      <span class="cta-detail">Sem compromisso</span>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p class="footer-logo">✦ Lumera Vision ✦</p>
+    <p class="footer-name">Deniane Bezerra</p>
+    <p class="footer-role">Mentoria, Assessoria e Consultoria Empresarial</p>
+    <p class="footer-tagline">"Clareza para decidir. Estrutura para crescer."</p>
+  </footer>
+
+</body>
+</html>
